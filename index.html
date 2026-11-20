@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邱亭瑜 Ting-Yu Chiu｜個人作品集</title>
+    <!-- 引入日系圓潤可愛字型與繁體中文標準字 -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f4f0;
+            --card-bg: #fffdfa;
+            --primary-pink: #c98f9b;
+            --soft-pink: #ead8d7;
+            --light-pink: #f1e7e3;
+            --pale-pink: #faf6f2;
+            --text-main: #403936;
+            --text-sub: #817570;
+            --accent-yellow: #d9c7a5;
+            --shadow: 0 16px 45px rgba(75, 59, 52, 0.07);
+            --transition: all 0.28s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            /* 防止切換不同高度分頁時，捲軸出現/消失造成版面左右跳動與寬度不一致 */
+            scrollbar-gutter: stable;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 28px 22px;
+            background-image: radial-gradient(rgba(201, 143, 155, .16) .7px, transparent .7px);
+            background-size: 22px 22px;
+        }
+
+        /* 統一頂部導覽列與主內容區塊寬度、邊框與對齊 */
+        header,
+        .container {
+            width: 100%;
+            max-width: 1160px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 17px 28px;
+            background: rgba(255, 253, 250, .92);
+            backdrop-filter: blur(12px);
+            border-radius: 4px;
+            box-shadow: 0 5px 25px rgba(75, 59, 52, .045);
+            margin-bottom: 28px;
+            border: 1px solid #eee6df;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: .08em;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--primary-pink);
+        }
+
+        nav {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 9px 15px;
+            border-radius: 2px;
+            font-size: .86rem;
+            font-weight: 500;
+            letter-spacing: .05em;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: var(--pale-pink);
+            color: var(--text-main);
+        }
+
+        .nav-btn.active {
+            background: var(--text-main);
+            color: white;
+            border-color: var(--text-main);
+            box-shadow: none;
+        }
+
+        .container {
+            position: relative;
+            margin-bottom: 34px;
+        }
+
+        /* 所有分頁區塊統一內距、寬度、外框與陰影 */
+        .page {
+            display: none;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 4px;
+            padding: 64px 66px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee6df;
+            animation: fadeIn .35s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* 首頁樣式 */
+        .welcome-wrap {
+            text-align: left;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            color: var(--primary-pink);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            margin-bottom: 23px;
+        }
+
+        .welcome-title {
+            font-size: clamp(2.4rem, 5vw, 4.25rem);
+            font-weight: 500;
+            line-height: 1.22;
+            letter-spacing: .015em;
+            margin-bottom: 22px;
+            color: var(--text-main);
+        }
+
+        .welcome-title span {
+            color: var(--primary-pink);
+        }
+
+        .welcome-desc {
+            font-size: 1rem;
+            color: var(--text-sub);
+            line-height: 2;
+            max-width: 610px;
+            margin: 0 0 28px;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 55px;
+        }
+
+        .btn-pink,
+        .btn-light {
+            padding: 13px 23px;
+            border-radius: 2px;
+            font-size: .88rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-pink {
+            background: var(--text-main);
+            color: white;
+            border: 1px solid var(--text-main);
+        }
+
+        .btn-pink:hover {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid #cfc3bb;
+        }
+
+        .btn-light:hover {
+            background: var(--pale-pink);
+            transform: translateY(-2px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            text-align: left;
+            border-top: 1px solid #e9dfd8;
+            padding-top: 28px;
+        }
+
+        .feature-card {
+            background: var(--pale-pink);
+            padding: 25px 23px;
+            border-radius: 3px;
+            border: 1px solid #eee5de;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            background: white;
+            box-shadow: 0 10px 25px rgba(75, 59, 52, .06);
+        }
+
+        .feature-icon {
+            font-size: 1.25rem;
+            margin-bottom: 17px;
+            filter: grayscale(.25);
+        }
+
+        .feature-card h3 {
+            font-size: .98rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            margin-bottom: 9px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            font-size: .86rem;
+            color: var(--text-sub);
+            line-height: 1.85;
+        }
+
+        /* 1. 關於我：左圖右字排版 */
+        .about-layout {
+            display: grid;
+            grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+            gap: clamp(32px, 5vw, 60px);
+            align-items: center;
+        }
+
+        .about-photo-frame {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: #eee7df;
+            border: 1px solid #e8ddd6;
+            box-shadow: 14px 14px 0 #f1e8e2;
+            position: relative;
+        }
+
+        .about-photo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 48%;
+        }
+
+        /* 當本機圖片尚未放入或載入失敗時，自動顯示精緻示意佔位框 */
+        .about-photo-placeholder {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 28px;
+            text-align: center;
+            color: #817570;
+            background: linear-gradient(145deg, #f3eee8, #e9dfd7);
+        }
+
+        .about-photo-frame.is-fallback .about-photo {
+            display: none;
+        }
+
+        .about-photo-frame.is-fallback .about-photo-placeholder {
+            display: flex;
+        }
+
+        .placeholder-person {
+            width: min(44%, 150px);
+            height: auto;
+            margin-bottom: 8px;
+            fill: #c8b8ad;
+        }
+
+        .placeholder-title {
+            font-size: .96rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            color: #65584f;
+        }
+
+        .placeholder-subtitle {
+            font-size: .8rem;
+            letter-spacing: .04em;
+            color: #8a7b70;
+        }
+
+        .about-copy {
+            min-width: 0;
+            text-align: left;
+        }
+
+        .about-eyebrow {
+            color: var(--primary-pink);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            margin-bottom: 14px;
+        }
+
+        .hero h2 {
+            font-size: 2.05rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: .04em;
+            line-height: 1.3;
+        }
+
+        .hero .subtitle {
+            color: var(--primary-pink);
+            font-weight: 600;
+            font-size: .88rem;
+            margin-bottom: 22px;
+            letter-spacing: .04em;
+            display: block;
+        }
+
+        .hero p {
+            line-height: 2;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+            font-size: .94rem;
+            text-align: left;
+        }
+
+        .tags {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .tag {
+            background: var(--pale-pink);
+            color: var(--text-sub);
+            border: 1px solid #e8ddd6;
+            padding: 7px 13px;
+            border-radius: 2px;
+            font-size: .8rem;
+            font-weight: 500;
+        }
+
+        /* 共用區塊標題 */
+        .section-title {
+            font-size: 1.65rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-desc {
+            font-size: .9rem;
+            color: var(--text-sub);
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+
+        /* 2. 作品集：精巧卡片網格排版，點擊展開原本大圖預覽 */
+        .banner-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .banner-card {
+            background: var(--card-bg);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid #e9dfd8;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .banner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(75, 59, 52, .08);
+            border-color: #d9c8be;
+        }
+
+        .banner-img-wrap {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            position: relative;
+            background: #f0e8e2;
+        }
+
+        .banner-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .45s ease;
+        }
+
+        .banner-card:hover .banner-img-wrap img {
+            transform: scale(1.04);
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 9px;
+            right: 9px;
+            background: rgba(255, 253, 250, .94);
+            color: var(--text-main);
+            font-size: .72rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 2px;
+            opacity: 0;
+            transition: var(--transition);
+            border: 1px solid #e8ddd6;
+        }
+
+        .banner-card:hover .zoom-hint {
+            opacity: 1;
+        }
+
+        .banner-info {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            gap: 12px;
+            background: var(--card-bg);
+        }
+
+        .banner-text h3 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+            line-height: 1.45;
+        }
+
+        .banner-text p {
+            font-size: .82rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        .banner-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px solid #f0e7e0;
+        }
+
+        .banner-badge {
+            background: var(--pale-pink);
+            color: var(--primary-pink);
+            border: 1px solid #e8d9d5;
+            font-size: .72rem;
+            font-weight: 600;
+            padding: 4px 9px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        .banner-open-link {
+            font-size: .75rem;
+            color: var(--text-sub);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .banner-card:hover .banner-open-link {
+            color: var(--primary-pink);
+        }
+
+        /* 點開後的原本大尺寸 Banner 燈箱 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 39, 36, .8);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            animation: fadeIn .25s ease;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: min(1060px, 92vw);
+            width: auto;
+            min-width: min(340px, 92vw);
+            background: var(--card-bg);
+            padding: 22px;
+            border-radius: 3px;
+            border: 1px solid #e8ddd6;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 72vh;
+            object-fit: contain;
+            border-radius: 2px;
+            display: block;
+            background: #f0e8e2;
+        }
+
+        .lightbox-meta {
+            width: 100%;
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            text-align: left;
+            flex-wrap: wrap;
+        }
+
+        .lightbox-caption {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .lightbox-desc {
+            font-size: .88rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 38px;
+            height: 38px;
+            background: var(--text-main);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            background: var(--primary-pink);
+        }
+
+        /* 3. 聯絡資訊區塊 */
+        .contact-box {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--pale-pink);
+            padding: 19px 23px;
+            border-radius: 3px;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid #e9dfd8;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background: #f2e8e4;
+            transform: translateX(4px);
+        }
+
+        .contact-icon {
+            font-size: 1.35rem;
+        }
+
+        .contact-info h4 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .contact-info span {
+            font-size: .84rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        footer {
+            font-size: .76rem;
+            color: #9b8e87;
+            font-weight: 400;
+            letter-spacing: .08em;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .banner-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 15px 12px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 13px;
+                padding: 16px 12px;
+            }
+
+            nav {
+                gap: 2px;
+            }
+
+            .nav-btn {
+                padding: 8px 10px;
+                font-size: .8rem;
+            }
+
+            .page {
+                padding: 34px 24px;
+            }
+
+            .welcome-title {
+                font-size: 2.25rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .about-photo-frame {
+                max-width: 340px;
+                margin: 0 auto;
+                aspect-ratio: 4 / 5;
+            }
+
+            .banner-list {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox-content img {
+                max-height: 65vh;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .page {
+                padding: 28px 18px;
+            }
+
+            .welcome-title {
+                font-size: 1.9rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 頂部導覽列 -->
+    <header>
+        <div class="logo" onclick="navigateTo('welcome')">TING-YU CHIU</div>
+        <nav>
+            <button class="nav-btn active" data-target="welcome" onclick="navigateTo('welcome')">首頁</button>
+            <button class="nav-btn" data-target="about" onclick="navigateTo('about')">關於我</button>
+            <button class="nav-btn" data-target="portfolio" onclick="navigateTo('portfolio')">作品集</button>
+            <button class="nav-btn" data-target="contact" onclick="navigateTo('contact')">聯絡我</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- 頁面 0：首頁 (Welcome) -->
+        <section id="welcome" class="page active">
+            <div class="welcome-wrap">
+                <span class="welcome-badge">PERSONAL PORTFOLIO　/　2026</span>
+                <h1 class="welcome-title">Hello, I'm<br><span>邱亭瑜 Ting-Yu Chiu.</span></h1>
+                <p class="welcome-desc">
+                    專注於電商視覺設計、社群內容企劃與 AI 短影音製作。結合美妝背景、顧客需求觀察力與跨產業實務經驗，將品牌想法轉化為清晰、有吸引力的視覺內容。
+                </p>
+                <div class="cta-group">
+                    <button class="btn-pink" onclick="navigateTo('portfolio')">VIEW SELECTED WORKS　↗</button>
+                    <button class="btn-light" onclick="navigateTo('about')">MORE ABOUT ME</button>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">01 /</div>
+                        <h3>視覺設計</h3>
+                        <p>電商 Banner、商品主視覺、活動海報與品牌視覺素材。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">02 /</div>
+                        <h3>社群與內容企劃</h3>
+                        <p>社群貼文規劃、品牌內容發想與行銷溝通。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">03 /</div>
+                        <h3>影音與數位工具</h3>
+                        <p>Canva、Photoshop、Illustrator 與 AI 短影音製作。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 頁面 1：關於我 (About - 左圖右字) -->
+        <section id="about" class="page">
+            <div class="about-layout">
+                <!-- 左側個人照片 -->
+                <div class="about-photo-frame" id="about-photo-frame">
+                    <img class="about-photo" src="./img/P1.jpg" alt="邱亭瑜個人照片"
+                        onerror="document.getElementById('about-photo-frame').classList.add('is-fallback')">
+                    <div class="about-photo-placeholder">
+                        <svg class="placeholder-person" viewBox="0 0 180 210" aria-hidden="true">
+                            <circle cx="90" cy="62" r="34" />
+                            <path d="M28 190c4-48 28-76 62-76s58 28 62 76" />
+                        </svg>
+                        <span class="placeholder-title">個人照片放置區</span>
+                        <span class="placeholder-subtitle">請確認 ./img/P1.jpg 路徑</span>
+                    </div>
+                </div>
+
+                <!-- 右側自我介紹 -->
+                <div class="about-copy">
+                    <div class="about-eyebrow">ABOUT ME　/　Ting-Yu Chiu</div>
+                    <div class="hero">
+                        <h2>你好，我是邱亭瑜。</h2>
+                        <div class="subtitle">電商美編人員 / 社群行銷助理 / 行銷企劃助理</div>
+                        <p>
+                            畢業於<strong>長庚科技大學化妝品應用系</strong>，過去曾在百貨零售、物流生管及行政財務等不同領域累積工作經驗，培養了顧客服務、溝通協調、細節觀察與執行能力。<br><br>
+                            在不同的工作歷程中，我逐漸發現自己對視覺美感、品牌設計及數位行銷的熱情。喜歡從生活與消費者需求中觀察靈感，將想法轉化為具有吸引力的視覺內容。目前持續精進電商視覺設計、社群內容企劃及
+                            AI 短影音製作，希望結合過去的實務經驗與設計思維，創造兼具美感、品牌特色與溝通效果的作品。
+                        </p>
+                        <div class="tags">
+                            <span class="tag">長庚科大化妝品應用系</span>
+                            <span class="tag">美容乙級 / 丙級證照</span>
+                            <span class="tag">電商 Banner 設計</span>
+                            <span class="tag">AI 短影音與社群企劃</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 頁面 2：作品集 (Portfolio - 小巧卡片排版，點開為原本大圖大小) -->
+        <section id="portfolio" class="page">
+            <h2 class="section-title">🖼️ 作品集</h2>
+            <p class="section-desc">精選電商與品牌視覺練習。點擊任一作品卡片，可展開檢視原本完整比例的 Banner 大圖。</p>
+
+            <div class="banner-list">
+                <!-- Banner 作品 1 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/個人形象banner (1).png" alt="MÉRÉVA｜銀飾品牌形象主視覺">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>MÉRÉVA｜銀飾品牌形象主視覺</h3>
+                            <p>以以女性形象與銀飾穿搭呈現品牌風格，運用柔和的大地色調、自然光影與簡約排版，營造韓系極簡與法式優雅的視覺氛圍。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">電商活動 Banner</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Banner 作品 2 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/BANNER設計3.png" alt="珍珠銀飾｜商品系列形象設計">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>珍珠銀飾｜商品系列形象設計</h3>
+                            <p>以珍珠與銀飾作為視覺主角，搭配柔軟絲緞背景與細節特寫，透過圖片層次與留白構圖，凸顯商品的精緻質感與優雅線條。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">品牌官網首圖</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Banner 作品 3 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/官網banner設計-2.png" alt="暮NEW COLLECTION｜銀飾新品系列宣傳">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>NEW COLLECTION｜銀飾新品系列宣傳</h3>
+                            <p>結合人物穿搭與銀飾細節，運用左右分割構圖及柔和米色調，呈現新品系列的時尚氛圍，傳達飾品與日常穿搭的搭配魅力。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">新品系列橫幅</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Banner 作品 4 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/ig貼文示意圖.png" alt="品牌社群經營｜銀飾新品 Instagram 貼文設計">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>銀飾新品 Instagram 貼文設計</h3>
+                            <p>搭以銀飾新品為主題，規劃 Instagram 貼文與社群版面，運用奶油米色調、商品特寫及一致的視覺排版，建立品牌風格，提升社群內容的整體質感與辨識度。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">社群貼文視覺</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Banner 作品 5 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/海報示意圖.png"
+                            alt="聖誕節限定｜銀飾品牌節慶形象海報">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>聖誕節限定｜銀飾品牌節慶形象海報</h3>
+                            <p>以聖誕節為主題，規劃三款系列形象海報，分別呈現節慶送禮、銀飾穿搭與浪漫求婚情境。透過奶油白、香檳金與酒紅色調，結合緞帶、珠寶與暖色光影，營造一致且精緻的節慶氛圍，展現品牌的精品質感。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">節慶形象海報</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Banner 作品 6 -->
+                <article class="banner-card" onclick="openLightbox(this)">
+                    <div class="banner-img-wrap">
+                        <img src="./img/官網商業圖.jpg"
+                            alt="MÉRÉVA｜銀飾電商商品詳情頁設計">
+                        <span class="zoom-hint">🔍 點擊放大檢視</span>
+                    </div>
+                    <div class="banner-info">
+                        <div class="banner-text">
+                            <h3>MÉRÉVA｜銀飾電商商品詳情頁設計</h3>
+                            <p>以銀色晶鑽手鏈為主題，規劃電腦版電商商品頁，結合商品主視覺、細節特寫、商品介紹與購物資訊，運用簡約排版與柔和灰米色調，打造兼具品牌質感與購物體驗的商品頁面。</p>
+                        </div>
+                        <div class="banner-footer">
+                            <span class="banner-badge">商品詳情頁設計</span>
+                            <span class="banner-open-link">檢視原尺寸 ↗</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 頁面 3：聯絡我 (Contact) -->
+        <section id="contact" class="page">
+            <h2 class="section-title">💌 保持聯繫</h2>
+            <p class="section-desc">歡迎與我聯繫，期待為團隊帶來熱情與專業！</p>
+            <div class="contact-box">
+                <a href="mailto:vicky92432@kimo.com" class="contact-item">
+                    <div class="contact-icon">📮</div>
+                    <div class="contact-info">
+                        <h4>電子郵件</h4>
+                        <span>vicky92432@gamil.com</span>
+                    </div>
+                </a>
+                <a href="tel:0966266899" class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <h4>聯絡手機</h4>
+                        <span>0966-266-899（桃園市平鎮區 / 中壢區）</span>
+                    </div>
+                </a>
+                <div class="contact-item" style="cursor: default;">
+                    <div class="contact-icon">🎯</div>
+                    <div class="contact-info">
+                        <h4>求職意向</h4>
+                        <span>電商美編人員 / 社群行銷助理 / 行銷企劃助理</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 圖片聚焦燈箱視窗 (點開呈現原本 16:7 大尺寸 Banner 效果) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <button class="close-btn" onclick="closeLightbox(event, true)">✕</button>
+            <img id="lightbox-img" src="" alt="Banner 預覽">
+            <div class="lightbox-meta">
+                <div>
+                    <p id="lightbox-caption" class="lightbox-caption"></p>
+                    <p id="lightbox-desc" class="lightbox-desc"></p>
+                </div>
+                <span id="lightbox-badge" class="banner-badge"></span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 TING-YU CHIU　/　PERSONAL PORTFOLIO</p>
+    </footer>
+
+    <script>
+        // 分頁切換函式
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // 開啟燈箱預覽原尺寸 Banner
+        function openLightbox(cardElement) {
+            const img = cardElement.querySelector('img');
+            const title = cardElement.querySelector('h3');
+            const desc = cardElement.querySelector('.banner-text p');
+            const badge = cardElement.querySelector('.banner-badge');
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxDesc = document.getElementById('lightbox-desc');
+            const lightboxBadge = document.getElementById('lightbox-badge');
+
+            if (img && lightbox) {
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = title ? title.textContent : img.alt;
+                lightboxDesc.textContent = desc ? desc.textContent : '';
+                lightboxBadge.textContent = badge ? badge.textContent : '';
+                lightbox.classList.add('open');
+            }
+        }
+
+        // 關閉燈箱
+        function closeLightbox(event, forceClose = false) {
+            if (forceClose || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('open');
+            }
+        }
+
+        // 支援按 ESC 鍵關閉燈箱
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('open');
+            }
+        });
+    </script>
+</body>
+
+</html>
